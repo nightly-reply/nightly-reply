@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nightly Reply — 24/7 Chat Assistant for B&amp;Bs</title>
+<meta name="description" content="Nightly Reply is a chat assistant for bed & breakfasts and vacation rentals. It answers guest questions 24/7 and captures leads while you sleep.">
+<meta property="og:title" content="Nightly Reply — 24/7 Chat Assistant for B&Bs">
+<meta property="og:description" content="Websites + 24/7 guest assistants for B&Bs and vacation rentals.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1a2b4a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a2b4a'/%3E%3Cpath d='M40 14a18 18 0 1 0 10 32A22 22 0 0 1 40 14z' fill='%23e8a838'/%3E%3C/svg%3E">
+<style>
+:root{
+  --navy:#1a2b4a;
+  --navy-dark:#121f37;
+  --amber:#e8a838;
+  --amber-dark:#c98d22;
+  --cream:#faf6ef;
+  --ink:#24304a;
+  --muted:#5d6985;
+  --line:#e6e0d3;
+  --white:#fff;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(26,43,74,.10);
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;font-family:var(--font);color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:100%;max-width:1100px;margin:0 auto;padding:0 20px}
+section{padding:88px 0}
+h1,h2,h3{color:var(--navy);line-height:1.15;margin:0}
+h2{font-size:clamp(1.8rem,4vw,2.5rem);letter-spacing:-.01em}
+.eyebrow{display:inline-block;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-dark);margin-bottom:10px}
+.section-head{text-align:center;max-width:680px;margin:0 auto 48px}
+.section-head p{color:var(--muted);font-size:1.1rem;margin:14px 0 0}
+
+/* Buttons */
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:700;font-size:1rem;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:inherit;transition:transform .15s,background .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--amber);color:var(--navy-dark)}
+.btn-primary:hover{background:#f0b44c;box-shadow:0 8px 20px rgba(232,168,56,.35)}
+.btn-ghost{border-color:rgba(255,255,255,.7);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+
+/* Nav */
+header{position:sticky;top:0;z-index:50;background:rgba(26,43,74,.97);backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
+.logo{text-decoration:none;color:#fff;line-height:1.15}
+.logo strong{display:block;font-size:1.3rem;letter-spacing:-.01em}
+.logo strong span{color:var(--amber)}
+.logo small{display:block;font-size:.72rem;color:#b9c3d9;letter-spacing:.02em}
+.nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav-links a{color:#dfe5f1;text-decoration:none;font-weight:500;font-size:.95rem}
+.nav-links a:hover{color:var(--amber)}
+.nav-phone{color:var(--amber);font-weight:700;text-decoration:none;white-space:nowrap}
+.nav-phone:hover{text-decoration:underline}
+.menu-btn{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer;padding:6px}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:radial-gradient(900px 500px at 85% 20%,rgba(232,168,56,.55),transparent 60%),linear-gradient(135deg,var(--navy) 0%,#22345a 55%,#6b5a47 120%);color:#fff;padding:96px 0 104px}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:26px 26px;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero-tag{display:inline-block;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:700;border:1px solid rgba(232,168,56,.5);padding:6px 14px;border-radius:999px}
+.hero h1{color:#fff;font-size:clamp(2.3rem,5.4vw,3.8rem);letter-spacing:-.025em;margin:20px 0 0}
+.hero-brand{margin:14px 0 0;font-size:1rem;color:#d7deec}
+.hero-brand b{color:#fff;font-weight:600}
+.hero p.sub{font-size:clamp(1.05rem,2vw,1.25rem);max-width:540px;margin:22px 0 34px;color:#e9edf6}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero-points{list-style:none;padding:0;margin:34px 0 0;display:flex;gap:22px;flex-wrap:wrap;color:#cfd7e8;font-size:.92rem}
+.hero-points li::before{content:"\2713";color:var(--amber);font-weight:800;margin-right:7px}
+.chat{background:#fff;border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.4);overflow:hidden;color:var(--ink);transform:rotate(1.5deg)}
+.chat-head{background:var(--navy-dark);color:#fff;padding:14px 18px;display:flex;align-items:center;gap:10px;font-weight:600;font-size:.95rem}
+.chat-head i{width:9px;height:9px;border-radius:50%;background:#5fd38d;display:inline-block}
+.chat-head small{margin-left:auto;color:#9fb0cf;font-weight:400}
+.chat-body{padding:18px;display:grid;gap:10px;background:#f6f3ec}
+.bub{max-width:84%;padding:10px 14px;border-radius:16px;font-size:.92rem;line-height:1.45}
+.bub.g{background:#fff;border:1px solid var(--line);justify-self:start;border-bottom-left-radius:4px}
+.bub.a{background:var(--navy);color:#fff;justify-self:end;border-bottom-right-radius:4px}
+.chat-cap{text-align:center;font-size:.72rem;color:var(--muted);padding:0 0 12px;background:#f6f3ec}
+
+/* Demo */
+.demo{background:var(--cream)}
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1000px;margin:0 auto}
+.video-grid figure{margin:0}
+.video-grid figcaption{text-align:center;font-weight:700;color:var(--navy);margin-top:12px}
+@media (max-width:760px){.video-grid{grid-template-columns:1fr}}
+.video-frame{margin:0 auto;border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 50px rgba(26,43,74,.22);background:#0c1424;border:6px solid #fff}
+.video-frame video{width:100%;aspect-ratio:16/9;background:#0c1424}
+.caption{text-align:center;color:var(--muted);margin:18px 0 0;font-size:1.05rem}
+
+/* Cards */
+.how{background:#fff}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;box-shadow:var(--shadow)}
+.how .card{background:var(--cream)}
+.step-num{width:46px;height:46px;border-radius:50%;background:var(--navy);color:var(--amber);font-weight:800;font-size:1.2rem;display:grid;place-items:center;margin-bottom:18px}
+.card h3{font-size:1.25rem;margin-bottom:8px}
+.card p{margin:0;color:var(--muted)}
+
+/* Features */
+.features{background:var(--cream)}
+.grid-feat{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 4px 14px rgba(26,43,74,.06)}
+.feat .tick{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(232,168,56,.18);color:var(--amber-dark);display:grid;place-items:center;font-weight:800}
+.feat h3{font-size:1.05rem;font-weight:600;color:var(--navy);line-height:1.4}
+
+/* Estimate */
+.estimate{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-dark) 100%)}
+.est-card{max-width:760px;margin:0 auto;background:#fff;border-radius:24px;padding:60px 36px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.est-card h2{font-size:clamp(2.2rem,6vw,3.4rem)}
+.est-card .sub{font-size:1.2rem;color:var(--muted);margin:18px auto 32px;max-width:560px}
+.btn-big{font-size:clamp(1.05rem,3.6vw,1.5rem);padding:20px 38px;word-break:break-all}
+.est-note{margin:24px 0 0;color:var(--muted);font-size:.98rem}
+
+/* FAQ */
+.faq{background:#fff}
+.faq-list{max-width:780px;margin:0 auto;display:grid;gap:12px}
+details{background:var(--cream);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+summary{cursor:pointer;list-style:none;padding:20px 24px;font-weight:700;color:var(--navy);display:flex;justify-content:space-between;align-items:center;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.6rem;line-height:1;color:var(--amber-dark);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0;padding:0 24px 22px;color:var(--muted)}
+details p a{color:var(--navy);font-weight:600}
+
+/* Contact */
+.contact{background:var(--cream)}
+form{max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px 28px;box-shadow:var(--shadow);display:grid;gap:18px}
+label{display:grid;gap:6px;font-weight:600;font-size:.92rem;color:var(--navy)}
+input,textarea{font:inherit;padding:13px 14px;border:1.5px solid #d4cebf;border-radius:10px;background:#fff;color:var(--ink);width:100%}
+input:focus,textarea:focus{border-color:var(--amber)}
+textarea{min-height:120px;resize:vertical}
+form .btn{justify-self:start}
+.talk{text-align:center;margin:28px 0 0;font-size:1.1rem;color:var(--muted)}
+.talk a{color:var(--navy);font-weight:700}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+
+/* Footer */
+footer{background:var(--navy-dark);color:#b9c3d9;text-align:center;padding:34px 20px;font-size:.95rem}
+
+/* Fade in */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .grid-3,.grid-feat{grid-template-columns:1fr 1fr}
+  .nav-links{gap:16px}
+}
+@media (max-width:760px){
+  section{padding:64px 0}
+  .menu-btn{display:block}
+  .nav-phone{margin-left:auto}
+  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--navy);flex-direction:column;gap:0;padding:8px 20px 16px;box-shadow:0 12px 20px rgba(0,0,0,.2)}
+  .nav-links.open{display:flex}
+  .nav-links a{display:block;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .hero{padding:64px 0 72px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .chat{transform:none}
+  .grid-3,.grid-feat{grid-template-columns:1fr}
+  .est-card{padding:44px 22px}
+  form{padding:26px 20px}
+  form .btn{justify-self:stretch;text-align:center}
+}
+@media (max-width:400px){
+  .nav{gap:10px}
+  .logo strong{font-size:1.15rem}
+  .logo small{font-size:.6rem}
+  .nav-phone{font-size:.82rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Nightly Reply home">
+      <strong>Nightly <span>Reply</span></strong>
+      <small>Websites + 24/7 guest assistants</small>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#estimate">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-phone" href="tel:+15122988933">512-298-8933</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="hero-tag">Nightly Reply</div>
+        <p class="hero-brand"><b>Websites + 24/7 guest assistants</b></p>
+        <h1>Your B&amp;B's front desk, open 24/7.</h1>
+        <p class="sub">Nightly Reply answers guest questions and captures leads while you sleep — so you never miss another booking.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#demo">See it in action</a>
+          <a class="btn btn-ghost" href="#estimate">Get a free preview</a>
+        </div>
+        <ul class="hero-points">
+          <li>Works on your existing site</li>
+          <li>Leads emailed to you</li>
+        </ul>
+      </div>
+      <div class="chat" aria-hidden="true">
+        <div class="chat-head"><i></i> Guest assistant <small>Online 24/7</small></div>
+        <div class="chat-body">
+          <div class="bub g">What time is check-in? Also, do you allow dogs?</div>
+          <div class="bub a">Check-in starts at 3 PM. Pets are welcome in select rooms — I can tell you which ones fit your group.</div>
+          <div class="bub g">Great. We're 4 adults and a lab.</div>
+          <div class="bub a">The Garden Suite sleeps four and is pet-friendly. What's your name and best phone number so the owner can follow up?</div>
+        </div>
+        <div class="chat-cap">Example conversation</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo" id="demo">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <span class="eyebrow">Demo</span>
+        <h2>See a real guest conversation</h2>
+      </div>
+      <div class="video-grid">
+        <figure>
+          <div class="video-frame">
+            <video controls playsinline preload="metadata" aria-label="Nightly Reply demo for Wimberley Hills">
+              <source src="wimberley-hills-demo.mp4" type="video/mp4">
+              Your browser doesn't support embedded video.
+            </video>
+          </div>
+          <figcaption>Wimberley Hills</figcaption>
+        </figure>
+        <figure>
+          <div class="video-frame">
+            <video controls playsinline preload="metadata" aria-label="Nightly Reply demo for New Braunfels">
+              <source src="new-braunfels-demo.mp4" type="video/mp4">
+              Your browser doesn't support embedded video.
+            </video>
+          </div>
+          <figcaption>New Braunfels</figcaption>
+        </figure>
+      </div>
+      <p class="caption">Watch a guest ask about pets, prices, and booking — in 30 seconds.</p>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Three simple steps</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="step-num">1</div>
+          <h3>We build it for your property</h3>
+          <p>Trained on your rooms, policies, and prices.</p>
+        </div>
+        <div class="card">
+          <div class="step-num">2</div>
+          <h3>Guests chat on your site</h3>
+          <p>Answers instantly, day or night.</p>
+        </div>
+        <div class="card">
+          <div class="step-num">3</div>
+          <h3>You get the lead</h3>
+          <p>Name and number emailed to you, you close the booking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <span class="eyebrow">Features</span>
+        <h2>Built for how guests actually ask</h2>
+      </div>
+      <div class="grid-feat">
+        <div class="feat"><span class="tick">&#10003;</span><h3>Answers check-in/check-out questions</h3></div>
+        <div class="feat"><span class="tick">&#10003;</span><h3>Explains pet policies</h3></div>
+        <div class="feat"><span class="tick">&#10003;</span><h3>Recommends rooms for groups</h3></div>
+        <div class="feat"><span class="tick">&#10003;</span><h3>Captures name + phone</h3></div>
+        <div class="feat"><span class="tick">&#10003;</span><h3>Admits what it doesn't know and hands off</h3></div>
+        <div class="feat"><span class="tick">&#10003;</span><h3>Works on any existing website</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="estimate" id="estimate">
+    <div class="wrap reveal">
+      <div class="est-card">
+        <span class="eyebrow">Pricing</span>
+        <h2>Get a free estimate.</h2>
+        <p class="sub">Every property is different. Email us your website or Airbnb link and we'll send you a custom quote — free, no pressure.</p>
+        <a class="btn btn-primary btn-big" href="mailto:provihq@gmail.com?subject=Free%20estimate%20request">provihq@gmail.com</a>
+        <p class="est-note">Include your website or Airbnb listing link so we can see what we're working with.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions owners ask</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Will it give wrong answers?</summary>
+          <p>It's trained on your property info and says so when it doesn't know — then it takes the guest's contact info so you can follow up personally.</p>
+        </details>
+        <details>
+          <summary>Does it replace talking to guests?</summary>
+          <p>No. It handles the routine questions at 2am. You still close the booking with the human touch.</p>
+        </details>
+        <details>
+          <summary>How do I get the leads?</summary>
+          <p>Every interested guest's name and number is emailed to you.</p>
+        </details>
+        <details>
+          <summary>How much does it cost?</summary>
+          <p>Every property is different, so we quote per job. Email your website or Airbnb link to <a href="mailto:provihq@gmail.com">provihq@gmail.com</a> and we'll send a free estimate.</p>
+        </details>
+        <details>
+          <summary>What if I don't have a website?</summary>
+          <p>We build those too — send your Airbnb link for a bundled estimate.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <span class="eyebrow">Contact</span>
+        <h2>Tell us about your property</h2>
+      </div>
+      <form action="https://formsubmit.co/provihq@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Nightly Reply inquiry">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label>Name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>Phone
+          <input type="tel" name="phone" autocomplete="tel" required>
+        </label>
+        <label>Website or Airbnb link
+          <input type="text" name="property_link" placeholder="https://" inputmode="url">
+        </label>
+        <label>Message
+          <textarea name="message"></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send message</button>
+      </form>
+      <p class="talk">Prefer to talk? Call or text <a href="tel:+15122988933">512-298-8933</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2026 Nightly Reply · Wimberley, TX</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+
+  var btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+  btn.addEventListener('click',function(){
+    var open=links.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open);
+  });
+  links.addEventListener('click',function(e){
+    if(e.target.tagName==='A'){links.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+  });
+
+  var items=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+      });
+    },{threshold:.12});
+    items.forEach(function(el){io.observe(el);});
+  }else{
+    items.forEach(function(el){el.classList.add('in');});
+  }
+})();
+</script>
+</body>
+</html>
